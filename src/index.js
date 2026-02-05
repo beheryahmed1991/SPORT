@@ -1,5 +1,4 @@
 import express from 'express';
-import { WebSocket } from 'ws';
 import { matchRouter } from './routes/matches.js';
 import http from 'http';
 import { attachWebsocketServer } from './ws/server.js';
