@@ -1,8 +1,8 @@
 import express from 'express';
-import { WebSocket } from 'ws';
 import { matchRouter } from './routes/matches.js';
 import http from 'http';
 import { attachWebsocketServer } from './ws/server.js';
+import { securityMiddleware } from './arcjet.js';
 const app = express();
 const server = http.createServer(app);
 
@@ -15,6 +15,8 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send({ message: 'Server is running!' });
 });
+
+app.use(securityMiddleware())
 
 app.use('/matches', matchRouter);
 
